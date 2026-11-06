@@ -1,0 +1,225 @@
+# xremap: atalhos de Mac para o KDE Plasma (Wayland).
+#
+# Baseado na configuração padrão do Toshy (github.com/RedBearAK/toshy, GPL-3.0). Não é uma cópia:
+# a sintaxe é outra e só entra o que serve ao seu uso (terminal, Dolphin, Firefox e geral).
+#
+# Ideia central, a mesma do Toshy: a tecla Cmd (GUI/Super/Meta) vira Ctrl DIREITO.
+# Assim Cmd+C, Cmd+V, Cmd+X, Cmd+A, Cmd+Z, Cmd+S, Cmd+T, Cmd+W, Cmd+F... funcionam sozinhos,
+# como Ctrl+tecla, e só escrevemos as exceções.
+# Nas regras: Ctrl_R- é o Cmd, Ctrl_L- é o Ctrl físico e Alt é o Option.
+#
+# Dicas: a classe de cada janela aparece no log do xremap ("active window: ... class: ...").
+# Validar sem iniciar: xremap --validate-config config.yml
+
+shared:
+  terminals: &terminals
+    - /^[Aa]lacritty$/
+    - kitty
+    - org.kde.konsole
+    - foot
+    - com.mitchellh.ghostty
+    - org.wezfurlong.wezterm
+  # Navegadores baseados no Firefox
+  firefox: &firefox
+    - /^[Ff]irefox/
+    - /^[Ll]ibre[Ww]olf/
+    - /^[Ff]loorp/
+    - /^[Zz]en/
+  # Navegadores baseados no Chromium
+  chromium: &chromium
+    - /^[Cc]hromium/
+    - /^[Gg]oogle-chrome/
+    - /^[Bb]rave/
+    - /^[Vv]ivaldi/
+    - /^microsoft-edge/
+    - /^[Oo]pera/
+    - org.kde.falkon
+  # Todos os navegadores (acrescente aqui a classe de um navegador novo)
+  browsers: &browsers
+    - /^[Ff]irefox/
+    - /^[Ll]ibre[Ww]olf/
+    - /^[Ff]loorp/
+    - /^[Zz]en/
+    - /^[Cc]hromium/
+    - /^[Gg]oogle-chrome/
+    - /^[Bb]rave/
+    - /^[Vv]ivaldi/
+    - /^microsoft-edge/
+    - /^[Oo]pera/
+    - org.kde.falkon
+  file_managers: &file_managers
+    - org.kde.dolphin
+
+modmap:
+  - name: Cmd vira Ctrl direito
+    remap:
+      Super_L: Ctrl_R
+      Super_R: Ctrl_R
+
+keymap:
+  # ---------------------------------------------------------------------------------------
+  # Terminais: Ctrl+C interrompe o programa, então o Cmd usa Ctrl+Shift (copiar, colar, abas).
+  # O Ctrl físico continua sendo Ctrl de verdade aqui.
+  # ---------------------------------------------------------------------------------------
+  - name: Terminais
+    application:
+      only: *terminals
+    remap:
+      # Apagar por palavra e por linha
+      Alt-Backspace: Ctrl-w
+      Alt-Delete: [Esc, d]
+      Ctrl_R-Backspace: Ctrl-u
+      Ctrl_R-Delete: Ctrl-k
+      # Abas
+      Shift-Ctrl_R-Left: Ctrl-PageUp
+      Shift-Ctrl_R-Right: Ctrl-PageDown
+      Ctrl_R-LeftBrace: Ctrl-Shift-LeftBrace
+      Ctrl_R-RightBrace: Ctrl-Shift-RightBrace
+      Ctrl_R-t: Ctrl-Shift-t
+      Ctrl_R-w: Ctrl-Shift-w
+      Ctrl_R-n: Ctrl-Shift-n
+      # Copiar, colar e outros
+      Ctrl_R-c: Ctrl-Shift-c
+      Ctrl_R-v: Ctrl-Shift-v
+      Ctrl_R-f: Ctrl-Shift-f
+      Ctrl_R-s: Ctrl-Shift-s
+      Ctrl_R-d: Ctrl-Shift-d
+      Ctrl_R-l: Ctrl-Shift-l
+      # Tamanho da fonte
+      Ctrl_R-Minus: Ctrl-Minus
+      Ctrl_R-Equal: Ctrl-Shift-Equal
+      # Cmd+. cancela o comando (como no macOS)
+      Ctrl_R-Dot: Ctrl-c
+      # Limpar a tela
+      Ctrl_R-k: Ctrl-l
+
+  # ---------------------------------------------------------------------------------------
+  # Dolphin (gerenciador de arquivos do KDE)
+  # ---------------------------------------------------------------------------------------
+  - name: Dolphin
+    application:
+      only: org.kde.dolphin
+    remap:
+      Ctrl_R-r: F5
+      Ctrl_R-KEY_2: Ctrl-KEY_3
+      Ctrl_R-KEY_3: Ctrl-KEY_2
+      Ctrl_R-Comma: Ctrl-Shift-Comma
+
+  # Gerenciadores de arquivos em geral (Finder)
+  - name: Gerenciadores de arquivos
+    application:
+      only: *file_managers
+    remap:
+      # Propriedades (Obter informações) e arquivos ocultos
+      Ctrl_R-i: Alt-Enter
+      Shift-Ctrl_R-Dot: Ctrl-h
+      # Navegação: voltar, avançar, pasta acima, abrir
+      Ctrl_R-LeftBrace: Alt-Left
+      Ctrl_R-RightBrace: Alt-Right
+      Ctrl_R-Left: Alt-Left
+      Ctrl_R-Right: Alt-Right
+      Ctrl_R-Up: Alt-Up
+      Ctrl_R-Down: Enter
+      # Mover para a lixeira
+      Ctrl_R-Backspace: Delete
+      Ctrl_R-Delete: null
+
+  # ---------------------------------------------------------------------------------------
+  # Navegadores baseados no Firefox: só o que é diferente dos outros navegadores.
+  # (Vem antes do bloco de navegadores em geral, porque a primeira regra que casa vence.)
+  # ---------------------------------------------------------------------------------------
+  - name: Firefox e derivados
+    application:
+      only: *firefox
+    remap:
+      # Preferências: abre a página de configurações numa aba nova
+      Ctrl_R-Comma:
+        launch: [firefox, "about:preferences"]
+      # Janela privada (nos outros navegadores já é Ctrl+Shift+N, que o Cmd+Shift+N produz sozinho)
+      Shift-Ctrl_R-n: Ctrl-Shift-p
+      # Ir para a aba N: no Firefox do Linux é Alt+N (nos Chromium é Ctrl+N, que o Cmd já produz)
+      Ctrl_R-KEY_1: Alt-KEY_1
+      Ctrl_R-KEY_2: Alt-KEY_2
+      Ctrl_R-KEY_3: Alt-KEY_3
+      Ctrl_R-KEY_4: Alt-KEY_4
+      Ctrl_R-KEY_5: Alt-KEY_5
+      Ctrl_R-KEY_6: Alt-KEY_6
+      Ctrl_R-KEY_7: Alt-KEY_7
+      Ctrl_R-KEY_8: Alt-KEY_8
+      Ctrl_R-KEY_9: Alt-KEY_9
+      # Evita confundir com Shift+Cmd+[ e ]
+      Shift-Ctrl_R-Minus: null
+      Shift-Ctrl_R-Equal: null
+
+  # ---------------------------------------------------------------------------------------
+  # Navegadores em geral (Firefox e Chromium: Chrome, Brave, Vivaldi, Edge...).
+  # Se você trocar de navegador, a classe dele só precisa estar na lista "browsers" lá em cima.
+  # ---------------------------------------------------------------------------------------
+  - name: Navegadores
+    application:
+      only: *browsers
+    remap:
+      # Fechar o navegador inteiro
+      Ctrl_R-q: Ctrl-q
+      # Voltar e avançar com Cmd+[ e Cmd+]
+      Ctrl_R-LeftBrace: Alt-Left
+      Ctrl_R-RightBrace: Alt-Right
+      # Ferramentas de desenvolvedor
+      Alt-Ctrl_R-i: Ctrl-Shift-i
+      Alt-Ctrl_R-j: Ctrl-Shift-j
+      # Trocar de aba com Cmd+Option+setas
+      Alt-Ctrl_R-Left: Ctrl-PageUp
+      Alt-Ctrl_R-Right: Ctrl-PageDown
+
+  # ---------------------------------------------------------------------------------------
+  # Ctrl físico no estilo emacs, como no macOS (fora dos terminais, onde o Ctrl é o de verdade)
+  # ---------------------------------------------------------------------------------------
+  - name: Ctrl estilo emacs
+    application:
+      not: *terminals
+    remap:
+      Ctrl_L-a: Home
+      Ctrl_L-e: End
+      Ctrl_L-b: Left
+      Ctrl_L-f: Right
+      Ctrl_L-n: Down
+      Ctrl_L-p: Up
+      Ctrl_L-k: [Shift-End, Backspace]
+      Ctrl_L-d: Delete
+
+  # ---------------------------------------------------------------------------------------
+  # Geral (todos os apps)
+  # ---------------------------------------------------------------------------------------
+  - name: Geral
+    remap:
+      # Cmd+Espaço abre o KRunner (Spotlight)
+      Ctrl_R-Space: Alt-Space
+      # Cmd+Q fecha o app; Cmd+H minimiza; Cmd+F3 mostra a área de trabalho
+      Ctrl_R-q: Alt-F4
+      Ctrl_R-h: Super-PageDown
+      Ctrl_R-F3: Super-d
+      # Cmd+Tab e Cmd+` alternam janelas
+      Ctrl_R-Tab: Alt-Tab
+      Shift-Ctrl_R-Tab: Alt-Shift-Tab
+      Ctrl_R-Grave: Alt-Grave
+      Shift-Ctrl_R-Grave: Alt-Shift-Grave
+      # Cmd+Shift+[ e ] trocam de aba
+      Shift-Ctrl_R-LeftBrace: Ctrl-PageUp
+      Shift-Ctrl_R-RightBrace: Ctrl-PageDown
+      # Capturas de tela (Spectacle)
+      Shift-Ctrl_R-KEY_3: Shift-Print
+      Shift-Ctrl_R-KEY_4: Alt-Print
+      Shift-Ctrl_R-KEY_5: Print
+      # Cmd+Setas: início e fim da linha e do texto
+      Ctrl_R-Left: Home
+      Ctrl_R-Right: End
+      Ctrl_R-Up: Ctrl-Home
+      Ctrl_R-Down: Ctrl-End
+      # Cmd+Backspace/Delete apagam a linha
+      Ctrl_R-Backspace: [Shift-Home, Backspace]
+      Ctrl_R-Delete: [Shift-End, Delete]
+      # Option+Setas e Option+Backspace/Delete andam e apagam por palavra
+      Alt-Left: Ctrl-Left
+      Alt-Right: Ctrl-Right
+      Alt-Backspace: Ctrl-Backspace
+      Alt-Delete: Ctrl-Delete

@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# DESC: teclado US internacional (acentos); a troca Cmd/Option fica a cargo do keyd (52-keyd.sh)
+# DESC: teclado US internacional (acentos); a troca Cmd/Option fica a cargo do xremap (52-xremap.sh)
 # Requer sudo (só para o localectl, que vale também no login do SDDM).
 set -euo pipefail
 
 LAYOUT=us
 VARIANT=intl
-# Sem opções de troca Alt/Win: quem faz Cmd/Option é o keyd, no nível do teclado.
+# Sem opções de troca Alt/Win: quem faz Cmd/Option é o xremap.
 # Se as duas trocas estivessem ativas, uma anularia a outra.
 OPTIONS=""
 
@@ -19,4 +19,4 @@ kwriteconfig6 --file kxkbrc --group Layout --key ResetOldOptions true
 # Sistema (tela de login)
 sudo localectl set-x11-keymap "$LAYOUT" pc105 "$VARIANT" "$OPTIONS"
 
-echo "Teclado: $LAYOUT ($VARIANT), sem troca Alt/Win (o keyd cuida do Cmd/Option)"
+echo "Teclado: $LAYOUT ($VARIANT), sem troca Alt/Win (o xremap cuida do Cmd/Option)"

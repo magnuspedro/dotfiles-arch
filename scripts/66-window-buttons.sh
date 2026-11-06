@@ -41,6 +41,17 @@ sed -i -e 's/^ActiveTextColor=.*/ActiveTextColor=235,219,178/' \
        -e 's/^InactiveTextColor=.*/InactiveTextColor=146,131,116/' \
        -e 's/^ActiveFocusedTabColor=.*/ActiveFocusedTabColor=60,56,54/' \
        -e 's/^LeftButtons=.*/LeftButtons=XIA/' "$DEST/${NAME}rc"
+# Barra de título mais fina: o WhiteSur usa 8 + 16 + 8 = 32 px; aqui 3 + 10 + 3 = 16 px.
+# Botões de 10 px, centralizados na barra (3 px de cada lado, sem margem extra).
+sed -i -e 's/^TitleEdgeTop=.*/TitleEdgeTop=3/' \
+       -e 's/^TitleEdgeBottom=.*/TitleEdgeBottom=3/' \
+       -e 's/^TitleEdgeTopMaximized=.*/TitleEdgeTopMaximized=3/' \
+       -e 's/^TitleEdgeBottomMaximized=.*/TitleEdgeBottomMaximized=3/' \
+       -e 's/^TitleHeight=.*/TitleHeight=10/' \
+       -e 's/^ButtonWidth=.*/ButtonWidth=10/' \
+       -e 's/^ButtonHeight=.*/ButtonHeight=10/' \
+       -e 's/^ButtonSpacing=.*/ButtonSpacing=7/' \
+       -e 's/^ButtonMarginTop=.*/ButtonMarginTop=0/' "$DEST/${NAME}rc"
 
 # Aplica: decoração Aurorae, botões à esquerda na ordem do Mac (X fechar, I minimizar, A maximizar)
 kwriteconfig6 --file kwinrc --group org.kde.kdecoration2 --key library org.kde.kwin.aurorae
