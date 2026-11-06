@@ -1,0 +1,15 @@
+{
+    "KPackageStructure": "Plasma/LookAndFeel",
+    "KPlugin": {
+        "Authors": [
+            {
+                "Name": "Magnus"
+            }
+        ],
+        "Description": "Gruvbox Dark para o Plasma: cores, ícones, cursor, splash e wallpaper",
+        "Id": "org.magnus.gruvbox",
+        "License": "MIT",
+        "Name": "Gruvbox Dark",
+        "Version": "1.0"
+    }
+}

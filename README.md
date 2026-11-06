@@ -20,21 +20,29 @@ Os scripts são idempotentes: pode rodar mais de uma vez.
 | Módulo | O que faz |
 |---|---|
 | `packages/core.txt`, `fonts.txt`, `gaming.txt`, `theme.txt` | Pacotes do repositório oficial, por tema |
-| `packages/aur.txt`, `aur-theme.txt`, `aur-gaming.txt` | Pacotes do AUR (via yay) |
+| `packages/aur.txt`, `aur-theme.txt`, `aur-gaming.txt`, `aur-dock.txt` | Pacotes do AUR (via yay) |
 | `scripts/20-zsh.sh` | zsh, plugins, `~/.zshrc`, shell padrão |
 | `scripts/25-terminal.sh` | tmux, alacritty, mise, fonte Hack; links das configs |
 | `scripts/30-mise.sh` | linguagens via mise (`mise/config.toml`) |
 | `scripts/35-git.sh` | identidade global do git |
 | `scripts/40-nvim.sh` | neovim + config (github.com/magnuspedro/nvim) |
-| `scripts/50-keyboard.sh` | US internacional (acentos) + Alt/Win trocados, como no Mac |
+| `scripts/50-keyboard.sh` | teclado US internacional (acentos); a troca Cmd/Option é do keyd |
+| `scripts/52-keyd.sh` | atalhos de Mac (Cmd+C/V/T...) com keyd; o terminal usa Ctrl+Shift+C/V |
+| `scripts/55-compose.sh` | cedilha no US internacional (`' + c = ç`) via `~/.XCompose` |
 | `scripts/60-defaults.sh` | alacritty como terminal padrão |
-| `scripts/65-theme.sh` | tema Gruvbox Dark no KDE (cores, ícones, cursor, Kvantum, GTK, wallpaper, lock screen) |
+| `scripts/65-theme.sh` | tema Gruvbox Dark no KDE: cores (com `Complementary`, que a lock screen usa), ícones, cursor, Kvantum, GTK, wallpaper, splash e lock screen |
+| `scripts/66-window-buttons.sh` | botões de janela estilo macOS nas cores Gruvbox (tema Aurorae gerado do WhiteSur-kde) |
 | `scripts/70-desktops.sh` | 5 áreas de trabalho virtuais |
-| `scripts/80-panel.sh` | menu global no topo, dock com auto-hide, botões à esquerda, Overview em Ctrl+↑ |
+| `scripts/80-panel.sh` | barra de menu no topo (logo do Arch, menu global) e Overview em Ctrl+↑ |
+| `scripts/85-latte.sh` | dock estilo Mac com Latte (zoom parabólico, esconde sozinha); layout em `latte/` |
 
 ## Estrutura
 
-    alacritty/  atac/  mise/  tmux/  zsh/   configs, ligadas por symlink no $HOME
+    alacritty/  atac/  mise/  tmux/  zsh/  xcompose/   configs, ligadas por symlink no $HOME
+    plasma/look-and-feel/                  tema global Gruvbox (copiado para ~/.local/share/plasma)
+    keyd/                                  atalhos de Mac (default.conf em /etc/keyd, app.conf por app)
+    latte/                                 layout da dock do Latte
+    icons/                                 logo do Arch em amarelo Gruvbox
     packages/                               listas de pacotes (uma por tema)
     scripts/                                passos de instalação, numerados pela ordem
 

@@ -1,0 +1,6 @@
+# Mantém a tabela padrão do locale e corrige o cedilha no US internacional:
+# com o locale en_US, ' + c dá "ć"; aqui passa a dar "ç".
+include "%L"
+
+<dead_acute> <c> : "ç" ccedilla
+<dead_acute> <C> : "Ç" Ccedilla

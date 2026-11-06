@@ -3,6 +3,7 @@ amd-ucode
 base
 base-devel
 btrfs-progs
+dolphin
 efibootmgr
 firefox
 git
