@@ -3,7 +3,8 @@ export ATAC_KEY_BINDINGS="$HOME/.dotfiles/atac/vim_key_bindings.toml"
 
 ZSH_THEME="spaceship"
 
-plugins=(git)
+# zsh-syntax-highlighting precisa ser o último da lista
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 
 [ -r "$ZSH/oh-my-zsh.sh" ] && source "$ZSH/oh-my-zsh.sh"
 
