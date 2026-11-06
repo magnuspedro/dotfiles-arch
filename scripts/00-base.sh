@@ -7,7 +7,7 @@ if [[ $EUID -eq 0 ]]; then
   exit 1
 fi
 echo ">> Verificando sudo"
-sudo -v || { echo "sudo indisponível" >&2; exit 1; }
+sudo -n true 2>/dev/null || sudo -v || { echo "sudo indisponível" >&2; exit 1; }
 
 BASE_PKGS=(git base-devel curl wget openssh unzip rsync man-db man-pages pacman-contrib)
 

@@ -1,0 +1,7 @@
+# backups locais
+*.bak
+*.bak.*
+backup-*/
+# arquivos de editor/sistema
+*.swp
+.DS_Store

@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# DESC: Zsh, plugins, ~/.zshrc do repo e shell padrão
 # Instala zsh, linka o zshrc do repo e define zsh como shell padrão. Requer sudo.
 set -euo pipefail
 DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"

@@ -1,0 +1,6 @@
+kde-gruvbox-git
+kvantum-theme-gruvbox-git
+bibata-cursor-gruvbox-git
+gruvbox-plus-icon-theme
+gruvbox-dark-gtk
+gruvbox-wallpaper
