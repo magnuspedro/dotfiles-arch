@@ -19,8 +19,9 @@ Os scripts são idempotentes: pode rodar mais de uma vez.
 
 | Módulo | O que faz |
 |---|---|
-| `packages/core.txt`, `fonts.txt`, `gaming.txt`, `theme.txt` | Pacotes do repositório oficial, por tema |
+| `packages/core.txt`, `fonts.txt`, `gaming.txt`, `theme.txt`, `bluetooth.txt` | Pacotes do repositório oficial, por tema |
 | `packages/aur.txt`, `aur-theme.txt`, `aur-gaming.txt`, `aur-dock.txt` | Pacotes do AUR (via yay) |
+| `scripts/15-bluetooth.sh` | habilita o serviço Bluetooth (bluez, bluedevil) |
 | `scripts/20-zsh.sh` | zsh, plugins, `~/.zshrc`, shell padrão |
 | `scripts/25-terminal.sh` | tmux, alacritty, mise, fonte Hack; links das configs |
 | `scripts/30-mise.sh` | linguagens via mise (`mise/config.toml`: Go e Rust, com o cargo) |
