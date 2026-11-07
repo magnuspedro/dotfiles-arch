@@ -21,7 +21,7 @@ qdbus6 org.kde.KWin /KWin org.kde.KWin.reconfigure >/dev/null 2>&1 || true
 mkdir -p "$HOME/.config/environment.d"
 printf 'GTK_MODULES=appmenu-gtk-module\n' > "$HOME/.config/environment.d/90-appmenu.conf"
 
-# Overview (Mission Control): Ctrl+Cima, mantendo Meta+W (vale após novo login)
+# Overview (Mission Control): Ctrl+Cima, mantendo Meta+W
 kwriteconfig6 --file kglobalshortcutsrc --group kwin --key Overview $'Ctrl+Up\tMeta+W,Meta+W,Toggle Overview'
 
 qdbus6 org.kde.plasmashell /PlasmaShell org.kde.PlasmaShell.evaluateScript "
